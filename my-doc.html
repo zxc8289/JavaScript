@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Todo list</h1>
+    <input id="data" onkeyup="enterData(event)" />
+
+    <ul id="container"></ul>
+  </body>
+
+  <script>
+    let array1 = ["스터디 하기", "제로콜라 마시기", "이클립스 먹기"];
+
+    function setLitag() {
+      const containerDiv = window.document.getElementById("container");
+
+      while (containerDiv.hasChildNodes()) {
+        containerDiv.removeChild(containerDiv.lastChild);
+      }
+
+      for (let i = 0; i < array1.length; i++) {
+        containerDiv.insertAdjacentHTML(
+          `beforeend`,
+          `<li>
+                    <span>${array1[i]}</span>
+                    <span style="color:red;cursor:pointer" onclick="del('${array1[i]}')"> X</span>         
+               </li>`
+        );
+      }
+    }
+
+    function add(itemName) {
+      array1.push(itemName);
+
+      setLitag();
+    }
+
+    function del(itemName) {
+      // 배열에서 아이템 이름을 검색해서 위치 파악
+      const idx = array1.indexOf(itemName);
+
+      // 배열에서 해당 위치의 데이터 삭제
+      array1.splice(idx, 1);
+
+      // li 태그 추가 함수 실행
+      setLiTag();
+    }
+
+    function enterData(event) {
+      if (event.keyCode == 13) {
+        // enter의 키코드는 13, enter키가 입력되면 동작
+        const dataInput = document.getElementById("data");
+
+        if (!array1.includes(dataInput.value)) {
+          add(dataInput.value);
+        }
+      }
+    }
+
+    setLitag();
+  </script>
+</html>

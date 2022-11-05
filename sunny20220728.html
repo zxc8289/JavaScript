@@ -1,0 +1,18 @@
+<script>
+  if (route.query.token) {
+    localStorage.setItem("token", route.query.token);
+    return redirect(route.path);
+  } else if (localStorage.getItem("token")) {
+    // 비워두면됨
+  } else {
+    return redirect("https://beluv-mall-dev.mayoube.co.kr/");
+  }
+
+  // const token = localStorage.getItem("token") || route.query.token; // 로컬스토리지에 토큰 확인 || 주소에 토큰 확인
+  // if (token) {
+  //   localStorage.setItem("token", route.query.token);
+  //   return redirect(route.path);
+  // } else {
+  //   return redirect("https://beluv-mall-dev.mayoube.co.kr/");
+  // }
+</script>
